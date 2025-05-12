@@ -39,8 +39,8 @@ const { version } = require('../package.json');
 
 // Health check routes
 app.get("/health", createHealthCheckHandler("orders-service", version, {
-  "auth-service": `${process.env.AUTH_MS_URL}/health`,
-  "product-service": `${process.env.PRODUCT_MS_URL}/health`
+  "auth-service": `${process.env.AUTH_MS_URL ?? "http://localhost:8000"}/health`,
+  "product-service": `${process.env.PRODUCT_MS_URL ?? "http://localhost:8002"}/health`
 }));
 app.get("/readiness", readinessCheck);
 app.get("/liveness", livenessCheck);

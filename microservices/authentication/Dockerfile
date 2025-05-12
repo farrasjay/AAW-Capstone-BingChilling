@@ -1,43 +1,38 @@
-# Stage 1: Fetching the node image and building the application
+# Stage 1: Build the application
 FROM node:18.18.2 AS builder
 
-# Setting up the work directory
 WORKDIR /service-auth
 
-# Copying package.json separately
+# Copy package.json and install dependencies
 COPY package.json ./
 
-# Install pnpm
 RUN npm install -g pnpm typescript
-
-# Installing dependencies
 RUN pnpm install
 
-# Copying the rest of the application
+# Copy all source files
 COPY . .
 
-# Building our application
+# Copy package.json into dist manually so it's available at runtime
+RUN cp package.json dist/
+
+# Build the app
 RUN pnpm run build
 
-# Stage 2: Creating a lightweight image for production
+# Stage 2: Create a lightweight production image
 FROM node:18.18.2-slim
 
-# Declaring env
 ENV PORT 8000
 ENV NODE_ENV production
 
-# Set working directory
 WORKDIR /service-auth
 
-# Copy built files from the previous stage
+# Copy build output and the copied package.json
 COPY --from=builder /service-auth/dist ./dist
-COPY --from=builder /service-auth/package.json ./package.json
 
-# Install production dependencies only
+# Install only production dependencies
+COPY --from=builder /service-auth/package.json ./package.json
 RUN npm install --only=production
 
-# Expose server port
+# Expose port and run server
 EXPOSE 8000
-
-# Start the application
 CMD ["node", "dist/src/server.js"]

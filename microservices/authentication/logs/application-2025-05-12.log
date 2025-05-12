@@ -1,0 +1,10 @@
+{"level":"info","message":"Circuit breaker initialized for service: auth-service","timestamp":"2025-05-12 16:16:10:1610"}
+{"level":"info","message":"Circuit breaker initialized for service: product-service","timestamp":"2025-05-12 16:16:10:1610"}
+{"level":"info","message":"Circuit breaker initialized for service: order-service","timestamp":"2025-05-12 16:16:10:1610"}
+{"level":"info","message":"Circuit breaker initialized for service: tenant-service","timestamp":"2025-05-12 16:16:10:1610"}
+{"level":"info","message":"Circuit breaker initialized for service: wishlist-service","timestamp":"2025-05-12 16:16:10:1610"}
+{"level":"info","message":"Circuit breaker initialized for service: auth-service","timestamp":"2025-05-12 16:21:02:212"}
+{"level":"info","message":"Circuit breaker initialized for service: product-service","timestamp":"2025-05-12 16:21:02:212"}
+{"level":"info","message":"Circuit breaker initialized for service: order-service","timestamp":"2025-05-12 16:21:02:212"}
+{"level":"info","message":"Circuit breaker initialized for service: tenant-service","timestamp":"2025-05-12 16:21:02:212"}
+{"level":"info","message":"Circuit breaker initialized for service: wishlist-service","timestamp":"2025-05-12 16:21:02:212"}

@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt = require('bcryptjs');
 import { NewUser } from '@db/schema/users';
 import { insertNewUser } from '../dao/insertNewUser.dao';
 import { ConflictResponse, InternalServerErrorResponse } from '@src/commons/patterns';

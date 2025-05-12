@@ -1,21 +1,23 @@
 {
   "compilerOptions": {
     "target": "es2017",
-    "module": "CommonJS",                                 /* Specify what module code is generated. */
-    "rootDir": ".",                                       /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
-    "outDir": "./dist",                                   /* Specify an output folder for all emitted files. */
-    "esModuleInterop": true,                              /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
-    "forceConsistentCasingInFileNames": true,             /* Ensure that casing is correct in imports. */
-    "strict": true,                                       /* Enable all strict type-checking options. */
-    "noImplicitAny": true,                                /* Enable error reporting for expressions and declarations with an implied 'any' type. */
-    "skipLibCheck": true,                                 /* Skip type checking all .d.ts files. */
+    "module": "CommonJS",
+    "rootDir": ".",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
     "baseUrl": ".",
+    "typeRoots": ["./node_modules/@types", "./src/types"],
     "paths": {
       "@src/*": ["./src/*"],
       "@db/*": ["./db/*"]
-    },
+    }
   },
   "ts-node": {
     "require": ["tsconfig-paths/register"]
-  }
+  },
+  "include": ["src", "src/types"]
 }

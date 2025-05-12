@@ -1,0 +1,15 @@
+{"level":"info","message":"Circuit breaker initialized for service: auth-service","timestamp":"2025-05-12 16:17:53:1753"}
+{"level":"info","message":"Circuit breaker initialized for service: product-service","timestamp":"2025-05-12 16:17:53:1753"}
+{"level":"info","message":"Circuit breaker initialized for service: order-service","timestamp":"2025-05-12 16:17:53:1753"}
+{"level":"info","message":"Circuit breaker initialized for service: tenant-service","timestamp":"2025-05-12 16:17:53:1753"}
+{"level":"info","message":"Circuit breaker initialized for service: wishlist-service","timestamp":"2025-05-12 16:17:53:1753"}
+{"level":"info","message":"Circuit breaker initialized for service: auth-service","timestamp":"2025-05-12 16:20:39:2039"}
+{"level":"info","message":"Circuit breaker initialized for service: product-service","timestamp":"2025-05-12 16:20:39:2039"}
+{"level":"info","message":"Circuit breaker initialized for service: order-service","timestamp":"2025-05-12 16:20:39:2039"}
+{"level":"info","message":"Circuit breaker initialized for service: tenant-service","timestamp":"2025-05-12 16:20:39:2039"}
+{"level":"info","message":"Circuit breaker initialized for service: wishlist-service","timestamp":"2025-05-12 16:20:39:2039"}
+{"level":"info","message":"Circuit breaker initialized for service: auth-service","timestamp":"2025-05-12 16:21:15:2115"}
+{"level":"info","message":"Circuit breaker initialized for service: product-service","timestamp":"2025-05-12 16:21:15:2115"}
+{"level":"info","message":"Circuit breaker initialized for service: order-service","timestamp":"2025-05-12 16:21:15:2115"}
+{"level":"info","message":"Circuit breaker initialized for service: tenant-service","timestamp":"2025-05-12 16:21:15:2115"}
+{"level":"info","message":"Circuit breaker initialized for service: wishlist-service","timestamp":"2025-05-12 16:21:15:2115"}

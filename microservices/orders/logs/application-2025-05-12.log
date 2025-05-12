@@ -1,0 +1,48 @@
+{"level":"info","message":"Circuit breaker initialized for service: auth-service","timestamp":"2025-05-12 14:59:01:591"}
+{"level":"info","message":"Circuit breaker initialized for service: product-service","timestamp":"2025-05-12 14:59:01:591"}
+{"level":"info","message":"Circuit breaker initialized for service: order-service","timestamp":"2025-05-12 14:59:01:591"}
+{"level":"info","message":"Circuit breaker initialized for service: tenant-service","timestamp":"2025-05-12 14:59:01:591"}
+{"level":"info","message":"Circuit breaker initialized for service: wishlist-service","timestamp":"2025-05-12 14:59:01:591"}
+{"level":"error","message":"Database health check failed: ","timestamp":"2025-05-12 14:59:36:5936"}
+{"level":"warn","message":"Health check for auth-service failed: Invalid URL","timestamp":"2025-05-12 14:59:36:5936"}
+{"level":"warn","message":"Health check for product-service failed: Invalid URL","timestamp":"2025-05-12 14:59:36:5936"}
+{"level":"info","message":"Circuit breaker initialized for service: auth-service","timestamp":"2025-05-12 15:03:23:323"}
+{"level":"info","message":"Circuit breaker initialized for service: product-service","timestamp":"2025-05-12 15:03:23:323"}
+{"level":"info","message":"Circuit breaker initialized for service: order-service","timestamp":"2025-05-12 15:03:23:323"}
+{"level":"info","message":"Circuit breaker initialized for service: tenant-service","timestamp":"2025-05-12 15:03:23:323"}
+{"level":"info","message":"Circuit breaker initialized for service: wishlist-service","timestamp":"2025-05-12 15:03:23:323"}
+{"level":"error","message":"Database health check failed: ","timestamp":"2025-05-12 15:04:33:433"}
+{"level":"warn","message":"Health check for auth-service failed: Invalid URL","timestamp":"2025-05-12 15:04:33:433"}
+{"level":"warn","message":"Health check for product-service failed: Invalid URL","timestamp":"2025-05-12 15:04:33:433"}
+{"level":"error","message":"Database health check failed: ","timestamp":"2025-05-12 15:04:33:433"}
+{"level":"warn","message":"Health check for auth-service failed: Invalid URL","timestamp":"2025-05-12 15:04:33:433"}
+{"level":"warn","message":"Health check for product-service failed: Invalid URL","timestamp":"2025-05-12 15:04:33:433"}
+{"level":"info","message":"Circuit breaker initialized for service: auth-service","timestamp":"2025-05-12 15:30:18:3018"}
+{"level":"info","message":"Circuit breaker initialized for service: product-service","timestamp":"2025-05-12 15:30:18:3018"}
+{"level":"info","message":"Circuit breaker initialized for service: order-service","timestamp":"2025-05-12 15:30:18:3018"}
+{"level":"info","message":"Circuit breaker initialized for service: tenant-service","timestamp":"2025-05-12 15:30:18:3018"}
+{"level":"info","message":"Circuit breaker initialized for service: wishlist-service","timestamp":"2025-05-12 15:30:18:3018"}
+{"level":"warn","message":"Health check for auth-service failed: Invalid URL","timestamp":"2025-05-12 15:30:23:3023"}
+{"level":"warn","message":"Health check for product-service failed: Invalid URL","timestamp":"2025-05-12 15:30:23:3023"}
+{"level":"info","message":"Circuit breaker initialized for service: auth-service","timestamp":"2025-05-12 16:03:41:341"}
+{"level":"info","message":"Circuit breaker initialized for service: product-service","timestamp":"2025-05-12 16:03:41:341"}
+{"level":"info","message":"Circuit breaker initialized for service: order-service","timestamp":"2025-05-12 16:03:41:341"}
+{"level":"info","message":"Circuit breaker initialized for service: tenant-service","timestamp":"2025-05-12 16:03:41:341"}
+{"level":"info","message":"Circuit breaker initialized for service: wishlist-service","timestamp":"2025-05-12 16:03:41:341"}
+{"level":"info","message":"Circuit breaker initialized for service: auth-service","timestamp":"2025-05-12 16:17:07:177"}
+{"level":"info","message":"Circuit breaker initialized for service: product-service","timestamp":"2025-05-12 16:17:07:177"}
+{"level":"info","message":"Circuit breaker initialized for service: order-service","timestamp":"2025-05-12 16:17:07:177"}
+{"level":"info","message":"Circuit breaker initialized for service: tenant-service","timestamp":"2025-05-12 16:17:07:177"}
+{"level":"info","message":"Circuit breaker initialized for service: wishlist-service","timestamp":"2025-05-12 16:17:07:177"}
+{"level":"warn","message":"Health check for auth-service failed: Unsupported protocol localhost:","timestamp":"2025-05-12 16:19:16:1916"}
+{"level":"warn","message":"Health check for product-service failed: Unsupported protocol localhost:","timestamp":"2025-05-12 16:19:16:1916"}
+{"level":"info","message":"Circuit breaker initialized for service: auth-service","timestamp":"2025-05-12 16:20:29:2029"}
+{"level":"info","message":"Circuit breaker initialized for service: product-service","timestamp":"2025-05-12 16:20:29:2029"}
+{"level":"info","message":"Circuit breaker initialized for service: order-service","timestamp":"2025-05-12 16:20:29:2029"}
+{"level":"info","message":"Circuit breaker initialized for service: tenant-service","timestamp":"2025-05-12 16:20:29:2029"}
+{"level":"info","message":"Circuit breaker initialized for service: wishlist-service","timestamp":"2025-05-12 16:20:29:2029"}
+{"level":"info","message":"Circuit breaker initialized for service: auth-service","timestamp":"2025-05-12 16:21:10:2110"}
+{"level":"info","message":"Circuit breaker initialized for service: product-service","timestamp":"2025-05-12 16:21:10:2110"}
+{"level":"info","message":"Circuit breaker initialized for service: order-service","timestamp":"2025-05-12 16:21:10:2110"}
+{"level":"info","message":"Circuit breaker initialized for service: tenant-service","timestamp":"2025-05-12 16:21:10:2110"}
+{"level":"info","message":"Circuit breaker initialized for service: wishlist-service","timestamp":"2025-05-12 16:21:10:2110"}

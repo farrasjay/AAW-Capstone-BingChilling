@@ -7,7 +7,6 @@ metadata:
   labels:
     app: authentication
 spec:
-  # replicas: 1
   selector:
     matchLabels:
       app: authentication
@@ -25,48 +24,33 @@ spec:
           resources:
             requests:
               cpu: "500m"
-              # memory: "5G"
             limits:
               memory: "1G"
+          env:
+            - name: AUTH_MS_URL
+              value: http://authentication-api.default.svc.cluster.local:8000
+            - name: PRODUCT_MS_URL
+              value: http://products-api.default.svc.cluster.local:8002
+            - name: TENANT_MS_URL
+              value: http://tenant-api.default.svc.cluster.local:8003
           startupProbe:
-            # httpGet:
-            #   path: /health
-            #   port: 8000
-            exec:
-              command:
-                - "curl"
-                - "--fail"
-                - "-o"
-                - "/dev/null"
-                - "http://localhost:8000/health"
+            httpGet:
+              path: /health
+              port: 8000
             initialDelaySeconds: 30
             periodSeconds: 30
             failureThreshold: 3
           readinessProbe:
-            # httpGet:
-            #   path: /readiness
-            #   port: 8000
-            exec:
-              command:
-                - "curl"
-                - "--fail"
-                - "-o"
-                - "/dev/null"
-                - "http://localhost:8000/readiness"
+            httpGet:
+              path: /readiness
+              port: 8000
             initialDelaySeconds: 60
             periodSeconds: 30
             failureThreshold: 5
           livenessProbe:
-            # httpGet:
-            #   path: /liveness
-            #   port: 8000
-            exec:
-              command:
-                - "curl"
-                - "--fail"
-                - "-o"
-                - "/dev/null"
-                - "http://localhost:8000/liveness"
+            httpGet:
+              path: /liveness
+              port: 8000
             initialDelaySeconds: 60
             periodSeconds: 30
             failureThreshold: 5
@@ -101,45 +85,52 @@ spec:
               # memory: "5G"
             limits:
               memory: "1G"
+          env:
+            - name: AUTH_MS_URL
+              value: http://authentication-api.default.svc.cluster.local:8000
+            - name: PRODUCT_MS_URL
+              value: http://products-api.default.svc.cluster.local:8002
+            - name: TENANT_MS_URL
+              value: http://tenant-api.default.svc.cluster.local:8003
           startupProbe:
-            # httpGet:
-            #   path: /health
-            #   port: 8001
-            exec:
-              command:
-                - "curl"
-                - "--fail"
-                - "-o"
-                - "/dev/null"
-                - "http://localhost:8001/health"
+            httpGet:
+              path: /health
+              port: 8001
+            #exec:
+              #command:
+                #- "curl"
+                #- "--fail"
+                #- "-o"
+                #- "/dev/null"
+                #- "http://localhost:8001/health"
             initialDelaySeconds: 30
             periodSeconds: 30
             failureThreshold: 3
           readinessProbe:
-            # httpGet:
-            #   path: /readiness
-            #   port: 8001
-            exec:
-              command:
-                - "curl"
-                - "--fail"
-                - "-o"
-                - "/dev/null"
-                - "http://localhost:8001/readiness"
+            httpGet:
+              path: /readiness
+              port: 8001
+            #exec:
+              #command:
+                #- "curl"
+                #- "--fail"
+                #- "-o"
+                #- "/dev/null"
+                #- "http://localhost:8001/readiness"
             initialDelaySeconds: 60
             periodSeconds: 30
             failureThreshold: 5
           livenessProbe:
-            # httpGet:
-            #   path: /liveness
-            #   port: 8001
-            exec:
-              command:
-                - "curl"
-                - "--fail"
-                - "-o"
-                - "/dev/null"
-                - "http://localhost:8001/liveness"
+            httpGet:
+              path: /liveness
+              port: 8001
+            #exec:
+              #command:
+                #- "curl"
+                #- "--fail"
+                #- "-o"
+                #- "/dev/null"
+                #- "http://localhost:8001/liveness"
             initialDelaySeconds: 60
             periodSeconds: 30
             failureThreshold: 5
@@ -174,45 +165,52 @@ spec:
               # memory: "5G"
             limits:
               memory: "1G"
+          env:
+            - name: AUTH_MS_URL
+              value: http://authentication-api.default.svc.cluster.local:8000
+            - name: PRODUCT_MS_URL
+              value: http://products-api.default.svc.cluster.local:8002
+            - name: TENANT_MS_URL
+              value: http://tenant-api.default.svc.cluster.local:8003
           startupProbe:
-            # httpGet:
-            #   path: /health
-            #   port: 8002
-            exec:
-              command:
-                - "curl"
-                - "--fail"
-                - "-o"
-                - "/dev/null"
-                - "http://localhost:8002/health"
+            httpGet:
+              path: /health
+              port: 8002
+            #exec:
+              #command:
+                #- "curl"
+                #- "--fail"
+                #- "-o"
+                #- "/dev/null"
+                #- "http://localhost:8002/health"
             initialDelaySeconds: 30
             periodSeconds: 30
             failureThreshold: 3
           readinessProbe:
-            # httpGet:
-            #   path: /readiness
-            #   port: 8002
-            exec:
-              command:
-                - "curl"
-                - "--fail"
-                - "-o"
-                - "/dev/null"
-                - "http://localhost:8002/readiness"
+            httpGet:
+              path: /readiness
+              port: 8002
+            #exec:
+              #command:
+                #- "curl"
+                #- "--fail"
+                #- "-o"
+                #- "/dev/null"
+                #- "http://localhost:8002/readiness"
             initialDelaySeconds: 60
             periodSeconds: 30
             failureThreshold: 5
           livenessProbe:
-            # httpGet:
-            #   path: /liveness
-            #   port: 8002
-            exec:
-              command:
-                - "curl"
-                - "--fail"
-                - "-o"
-                - "/dev/null"
-                - "http://localhost:8002/liveness"
+            httpGet:
+              path: /liveness
+              port: 8002
+            #exec:
+              #command:
+                #- "curl"
+                #- "--fail"
+                #- "-o"
+                #- "/dev/null"
+                #- "http://localhost:8002/liveness"
             initialDelaySeconds: 60
             periodSeconds: 30
             failureThreshold: 5
@@ -247,45 +245,52 @@ spec:
               # memory: "5G"
             limits:
               memory: "1G"
+          env:
+            - name: AUTH_MS_URL
+              value: http://authentication-api.default.svc.cluster.local:8000
+            - name: PRODUCT_MS_URL
+              value: http://products-api.default.svc.cluster.local:8002
+            - name: TENANT_MS_URL
+              value: http://tenant-api.default.svc.cluster.local:8003
           startupProbe:
-            # httpGet:
-            #   path: /health
-            #   port: 8003
-            exec:
-              command:
-                - "curl"
-                - "--fail"
-                - "-o"
-                - "/dev/null"
-                - "http://localhost:8003/health"
+            httpGet:
+              path: /health
+              port: 8003
+            #exec:
+              #command:
+                #- "curl"
+                #- "--fail"
+                #- "-o"
+                #- "/dev/null"
+                #- "http://localhost:8003/health"
             initialDelaySeconds: 30
             periodSeconds: 30
             failureThreshold: 3
           readinessProbe:
-            # httpGet:
-            #   path: /readiness
-            #   port: 8003
-            exec:
-              command:
-                - "curl"
-                - "--fail"
-                - "-o"
-                - "/dev/null"
-                - "http://localhost:8003/readiness"
+            httpGet:
+              path: /readiness
+              port: 8003
+            #exec:
+              #command:
+                #- "curl"
+                #- "--fail"
+                #- "-o"
+                #- "/dev/null"
+                #- "http://localhost:8003/readiness"
             initialDelaySeconds: 60
             periodSeconds: 30
             failureThreshold: 5
           livenessProbe:
-            # httpGet:
-            #   path: /liveness
-            #   port: 8003
-            exec:
-              command:
-                - "curl"
-                - "--fail"
-                - "-o"
-                - "/dev/null"
-                - "http://localhost:8003/liveness"
+            httpGet:
+              path: /liveness
+              port: 8003
+            #exec:
+              #command:
+                #- "curl"
+                #- "--fail"
+                #- "-o"
+                #- "/dev/null"
+                #- "http://localhost:8003/liveness"
             initialDelaySeconds: 60
             periodSeconds: 30
             failureThreshold: 5
@@ -320,45 +325,52 @@ spec:
               # memory: "5G"
             limits:
               memory: "1G"
+          env:
+            - name: AUTH_MS_URL
+              value: http://authentication-api.default.svc.cluster.local:8000
+            - name: PRODUCT_MS_URL
+              value: http://products-api.default.svc.cluster.local:8002
+            - name: TENANT_MS_URL
+              value: http://tenant-api.default.svc.cluster.local:8003
           startupProbe:
-            # httpGet:
-            #   path: /health
-            #   port: 8004
-            exec:
-              command:
-                - "curl"
-                - "--fail"
-                - "-o"
-                - "/dev/null"
-                - "http://localhost:8004/health"
+            httpGet:
+              path: /health
+              port: 8004
+            #exec:
+              #command:
+                #- "curl"
+                #- "--fail"
+                #- "-o"
+                #- "/dev/null"
+                #- "http://localhost:8004/health"
             initialDelaySeconds: 30
             periodSeconds: 30
             failureThreshold: 3
           readinessProbe:
-            # httpGet:
-            #   path: /readiness
-            #   port: 8004
-            exec:
-              command:
-                - "curl"
-                - "--fail"
-                - "-o"
-                - "/dev/null"
-                - "http://localhost:8004/readiness"
+            httpGet:
+              path: /readiness
+              port: 8004
+            #exec:
+              #command:
+                #- "curl"
+                #- "--fail"
+                #- "-o"
+                #- "/dev/null"
+                #- "http://localhost:8004/readiness"
             initialDelaySeconds: 60
             periodSeconds: 30
             failureThreshold: 5
           livenessProbe:
-            # httpGet:
-            #   path: /liveness
-            #   port: 8004
-            exec:
-              command:
-                - "curl"
-                - "--fail"
-                - "-o"
-                - "/dev/null"
-                - "http://localhost:8004/liveness"
+            httpGet:
+              path: /liveness
+              port: 8004
+            #exec:
+              #command:
+                #- "curl"
+                #- "--fail"
+                #- "-o"
+                #- "/dev/null"
+                #- "http://localhost:8004/liveness"
             initialDelaySeconds: 60
             periodSeconds: 30
             failureThreshold: 5

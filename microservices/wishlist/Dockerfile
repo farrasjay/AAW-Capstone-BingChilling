@@ -16,6 +16,9 @@ RUN pnpm install
 # Copying the rest of the application
 COPY . .
 
+# Copy package.json into dist manually so it's available at runtime
+RUN cp package.json dist/
+
 # Building our application
 RUN pnpm run build
 

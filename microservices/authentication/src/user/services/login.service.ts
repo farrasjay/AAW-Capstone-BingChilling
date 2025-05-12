@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt = require('bcryptjs');
 import jwt from 'jsonwebtoken';
 import { getUserByUsername } from '../dao/getUserByUsername.dao';
 import { InternalServerErrorResponse, NotFoundResponse, UnauthenticatedResponse } from "@src/commons/patterns";
