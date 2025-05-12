@@ -52,7 +52,8 @@ export const payOrderService = async (
                         });
                         
                         logger.debug('Product verification successful');
-                    } catch (productError) {
+                    } catch (error: unknown) {
+                        const productError = error as Error;
                         if (productError instanceof ServiceUnavailableResponse) {
                             // Circuit is open, but we can still continue with the payment
                             // as this is a non-critical check
@@ -64,7 +65,8 @@ export const payOrderService = async (
                     }
                 }
             }
-        } catch (checkError) {
+        } catch (error: unknown) {
+            const checkError = error as Error;
             // Log but continue - this is a non-critical check
             logger.warn(`Error checking products for order ${orderId}: ${checkError.message}`);
         }

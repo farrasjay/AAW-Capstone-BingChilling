@@ -1,4 +1,5 @@
-import { Request, Response } from 'express';
+// src/utils/healthCheck.ts
+import { Request, Response, RequestHandler, NextFunction } from 'express';
 import { pool } from '@src/db';
 import { logger } from './logger';
 import {
@@ -121,15 +122,15 @@ const getCircuitBreakerStatuses = () => {
   };
 };
 
-// Health check handler factory
+// Health check handler factory with correct Express handler signature
 export const createHealthCheckHandler = (
   serviceName: string,
   version: string,
   dependencies: { [key: string]: string } = {}
-) => {
+): RequestHandler => {
   const serverStartTime = Date.now();
   
-  return async (req: Request, res: Response) => {
+  return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
       // Check database connection
       const dbStatus = await checkDatabase();
@@ -187,16 +188,46 @@ export const createHealthCheckHandler = (
         statusCode = 503; // Service unavailable
       }
       
-      return res.status(statusCode).json(response);
+      res.status(statusCode).json(response);
     } catch (error: any) {
       logger.error(`Health check failed: ${error.message}`);
-      return res.status(500).json({
+      res.status(500).json({
         status: HealthStatus.UNHEALTHY,
         timestamp: new Date().toISOString(),
         details: error.message
       });
     }
   };
+};
+
+// Basic readiness check
+export const readinessCheck: RequestHandler = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    // Perform a simple DB connection test
+    const client = await pool.connect();
+    await client.query('SELECT 1');
+    client.release();
+    
+    res.status(200).json({
+      status: HealthStatus.HEALTHY,
+      timestamp: new Date().toISOString()
+    });
+  } catch (error: any) {
+    logger.error(`Readiness check failed: ${error.message}`);
+    res.status(503).json({
+      status: HealthStatus.UNHEALTHY,
+      timestamp: new Date().toISOString(),
+      details: error.message
+    });
+  }
+};
+
+// Liveness check
+export const livenessCheck: RequestHandler = (req: Request, res: Response, next: NextFunction): void => {
+  res.status(200).json({
+    status: HealthStatus.HEALTHY,
+    timestamp: new Date().toISOString()
+  });
 };
 
 // Helper function to format uptime
@@ -207,34 +238,4 @@ const formatUptime = (uptimeMs: number): string => {
   const days = Math.floor(uptimeMs / (1000 * 60 * 60 * 24));
   
   return `${days}d ${hours}h ${minutes}m ${seconds}s`;
-};
-
-// Basic readiness check (simpler version without external dependency checks)
-export const readinessCheck = async (req: Request, res: Response) => {
-  try {
-    // Perform a simple DB connection test
-    const client = await pool.connect();
-    await client.query('SELECT 1');
-    client.release();
-    
-    return res.status(200).json({
-      status: HealthStatus.HEALTHY,
-      timestamp: new Date().toISOString()
-    });
-  } catch (error: any) {
-    logger.error(`Readiness check failed: ${error.message}`);
-    return res.status(503).json({
-      status: HealthStatus.UNHEALTHY,
-      timestamp: new Date().toISOString(),
-      details: error.message
-    });
-  }
-};
-
-// Liveness check (always returns 200 unless the server is completely down)
-export const livenessCheck = (req: Request, res: Response) => {
-  return res.status(200).json({
-    status: HealthStatus.HEALTHY,
-    timestamp: new Date().toISOString()
-  });
 };

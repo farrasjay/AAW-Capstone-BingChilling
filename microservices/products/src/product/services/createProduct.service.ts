@@ -53,7 +53,8 @@ export const createProductService = async (
                     });
                     
                     logger.debug('Tenant verification successful');
-                } catch (tenantError) {
+                } catch (error: unknown) {
+                    const tenantError = error as Error;
                     if (tenantError instanceof ServiceUnavailableResponse) {
                         // Circuit is open, log and continue as this is non-critical
                         logger.warn('Tenant service unavailable, continuing with product creation');
@@ -63,7 +64,8 @@ export const createProductService = async (
                     // Continue with product creation despite tenant service issues
                 }
             }
-        } catch (tenantCheckError) {
+        } catch (error: unknown) {
+            const tenantCheckError = error as Error;
             // Log error but continue - tenant check is non-critical for product creation
             logger.warn(`Error checking tenant: ${tenantCheckError.message}`);
         }
@@ -80,7 +82,8 @@ export const createProductService = async (
                 }
                 
                 logger.debug(`Category verified: ${category_id}`);
-            } catch (categoryError) {
+            } catch (error: unknown) {
+                const categoryError = error as Error;
                 logger.error(`Error verifying category: ${categoryError.message}`, { 
                     stack: categoryError.stack,
                     categoryId: category_id 
@@ -120,7 +123,8 @@ export const createProductService = async (
             data: newProduct,
             status: 201,
         };
-    } catch (err) {
+    } catch (error: unknown) {
+        const err = error as Error;
         logger.error(`Unexpected error in createProductService: ${err.message}`, { 
             stack: err.stack,
             productName: name,

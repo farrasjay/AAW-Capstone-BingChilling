@@ -51,7 +51,8 @@ export const createWishlistService = async (
                     });
                     
                     logger.debug('User verification successful');
-                } catch (authError) {
+                } catch (error: unknown) {
+                    const authError = error as Error;
                     if (authError instanceof ServiceUnavailableResponse) {
                         // Circuit is open
                         logger.warn('Auth service unavailable, continuing with wishlist creation');
@@ -61,7 +62,8 @@ export const createWishlistService = async (
                     // Continue with wishlist creation despite auth service issues
                 }
             }
-        } catch (userCheckError) {
+        } catch (error: unknown) {
+            const userCheckError = error as Error;
             // Log error but continue - user check is non-critical for wishlist creation
             logger.warn(`Error checking user: ${userCheckError.message}`);
         }
@@ -77,7 +79,8 @@ export const createWishlistService = async (
                 logger.warn(`Wishlist creation failed: Name "${name}" already exists for user: ${user.id}`);
                 return new ConflictResponse('Wishlist with this name already exists').generate();
             }
-        } catch (checkError) {
+        } catch (error: unknown) {
+            const checkError = error as Error;
             logger.error(`Error checking for duplicate wishlists: ${checkError.message}`, {
                 stack: checkError.stack,
                 userId: user.id
@@ -107,7 +110,8 @@ export const createWishlistService = async (
             data: wishlist,
             status: 201,
         };
-    } catch (err) {
+    } catch (error: unknown) {
+        const err = error as Error;
         logger.error(`Unexpected error in createWishlistService: ${err.message}`, { 
             stack: err.stack,
             userId: user?.id,

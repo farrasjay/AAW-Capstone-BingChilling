@@ -27,7 +27,8 @@ export const getProductByCategoryService = async (
                 });
                 logger.debug('Tenant verification successful');
             }
-        } catch (tenantError) {
+        } catch (error: unknown) {
+            const tenantError = error as Error;
             if (tenantError instanceof ServiceUnavailableResponse) {
                 // Circuit is open, but we can still continue - this is a non-critical check
                 logger.warn('Tenant service unavailable, but continuing with product retrieval');

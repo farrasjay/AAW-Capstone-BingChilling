@@ -30,7 +30,9 @@ export const registerService = async (
                 logger.warn(`Registration failed: Username ${username} already exists`);
                 return new ConflictResponse("Username already exists").generate();
             }
-        } catch (dbError) {
+        } catch (error: unknown) {
+            // Type guard for the error object
+            const dbError = error as Error;
             logger.error(`Database error while checking existing username: ${dbError.message}`, { 
                 stack: dbError.stack, 
                 username 
@@ -76,12 +78,16 @@ export const registerService = async (
                 },
                 status: 201
             };
-        } catch (err) {
+        } catch (error: unknown) {
+            // Type guard for the error object
+            const err = error as Error;
             logger.error(`Error hashing password or creating user: ${err.message}`, { stack: err.stack });
-            return new InternalServerErrorResponse(err).generate();
+            return new InternalServerErrorResponse(err.message).generate();
         }
-    } catch (err) {
+    } catch (error: unknown) {
+        // Type guard for the error object
+        const err = error as Error;
         logger.error(`Unexpected error in registerService: ${err.message}`, { stack: err.stack });
-        return new InternalServerErrorResponse(err).generate();
+        return new InternalServerErrorResponse(err.message).generate();
     }
 }

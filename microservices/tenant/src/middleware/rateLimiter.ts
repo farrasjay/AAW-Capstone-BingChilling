@@ -1,5 +1,6 @@
 // src/middleware/rateLimiter.ts
 import rateLimit from 'express-rate-limit';
+import type { Options, RateLimitRequestHandler } from 'express-rate-limit';
 import { Request, Response } from 'express';
 import { logger } from '@src/utils/logger';
 import { TooManyRequestsResponse } from '@src/commons/patterns';
@@ -7,18 +8,18 @@ import { TooManyRequestsResponse } from '@src/commons/patterns';
 // Create rate limiter factory function
 export const createRateLimiter = (
   windowMs = 60 * 1000, // 1 minute by default
-  max = 60,             // 60 requests per window by default
+  maxRequests = 60,     // 60 requests per window by default
   message = 'Too many requests, please try again later',
   keyGenerator: (req: Request) => string = (req) => {
     // Default key is IP + route path
     return `${req.ip}:${req.path}`;
   } 
-) => {
-  const limiterOptions: rateLimit.Options = {
+): RateLimitRequestHandler => {
+  const limiterOptions: Partial<Options> = {
     windowMs,
-    max,
-    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-    legacyHeaders: false,  // Disable the `X-RateLimit-*` headers
+    limit: maxRequests, // Changed from 'max' to 'limit'
+    standardHeaders: true,
+    legacyHeaders: false,
     keyGenerator,
     handler: (req: Request, res: Response) => {
       logger.warn(`Rate limit exceeded for IP: ${req.ip}, path: ${req.path}`);

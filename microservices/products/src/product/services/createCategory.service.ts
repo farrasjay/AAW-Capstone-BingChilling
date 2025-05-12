@@ -33,7 +33,8 @@ export const createCategoryService = async (
                 logger.warn(`Category creation failed: Name "${name}" already exists`);
                 return new ConflictResponse('Category with this name already exists').generate();
             }
-        } catch (checkError) {
+        } catch (error: unknown) {
+            const checkError = error as Error;
             logger.error(`Error checking for duplicate categories: ${checkError.message}`, {
                 stack: checkError.stack
             });
@@ -62,7 +63,8 @@ export const createCategoryService = async (
             },
             status: 201,
         };
-    } catch (err) {
+    } catch (error: unknown) {
+        const err = error as Error;
         logger.error(`Unexpected error in createCategoryService: ${err.message}`, { 
             stack: err.stack,
             categoryName: name

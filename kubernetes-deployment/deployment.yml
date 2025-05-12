@@ -1,0 +1,365 @@
+# auth service
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authentication-api
+  labels:
+    app: authentication
+spec:
+  # replicas: 1
+  selector:
+    matchLabels:
+      app: authentication
+  template:
+    metadata:
+      labels:
+        app: authentication
+    spec:
+      containers:
+        - name: authentication
+          image: farrasjay/capstone-authentication:latest
+          ports:
+            - containerPort: 8000
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: "500m"
+              # memory: "5G"
+            limits:
+              memory: "1G"
+          startupProbe:
+            # httpGet:
+            #   path: /health
+            #   port: 8000
+            exec:
+              command:
+                - "curl"
+                - "--fail"
+                - "-o"
+                - "/dev/null"
+                - "http://localhost:8000/health"
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            failureThreshold: 3
+          readinessProbe:
+            # httpGet:
+            #   path: /readiness
+            #   port: 8000
+            exec:
+              command:
+                - "curl"
+                - "--fail"
+                - "-o"
+                - "/dev/null"
+                - "http://localhost:8000/readiness"
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            failureThreshold: 5
+          livenessProbe:
+            # httpGet:
+            #   path: /liveness
+            #   port: 8000
+            exec:
+              command:
+                - "curl"
+                - "--fail"
+                - "-o"
+                - "/dev/null"
+                - "http://localhost:8000/liveness"
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            failureThreshold: 5
+---
+# orders service
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orders-api
+  labels:
+    app: orders
+spec:
+  # replicas: 1
+  selector:
+    matchLabels:
+      app: orders
+  template:
+    metadata:
+      labels:
+        app: orders
+    spec:
+      containers:
+        - name: orders
+          image: farrasjay/capstone-orders:latest
+          ports:
+            - containerPort: 8001
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: "500m"
+              # memory: "5G"
+            limits:
+              memory: "1G"
+          startupProbe:
+            # httpGet:
+            #   path: /health
+            #   port: 8001
+            exec:
+              command:
+                - "curl"
+                - "--fail"
+                - "-o"
+                - "/dev/null"
+                - "http://localhost:8001/health"
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            failureThreshold: 3
+          readinessProbe:
+            # httpGet:
+            #   path: /readiness
+            #   port: 8001
+            exec:
+              command:
+                - "curl"
+                - "--fail"
+                - "-o"
+                - "/dev/null"
+                - "http://localhost:8001/readiness"
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            failureThreshold: 5
+          livenessProbe:
+            # httpGet:
+            #   path: /liveness
+            #   port: 8001
+            exec:
+              command:
+                - "curl"
+                - "--fail"
+                - "-o"
+                - "/dev/null"
+                - "http://localhost:8001/liveness"
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            failureThreshold: 5
+---
+# products service
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: products-api
+  labels:
+    app: products
+spec:
+  # replicas: 1
+  selector:
+    matchLabels:
+      app: products
+  template:
+    metadata:
+      labels:
+        app: products
+    spec:
+      containers:
+        - name: products
+          image: farrasjay/capstone-products:latest
+          ports:
+            - containerPort: 8002
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: "500m"
+              # memory: "5G"
+            limits:
+              memory: "1G"
+          startupProbe:
+            # httpGet:
+            #   path: /health
+            #   port: 8002
+            exec:
+              command:
+                - "curl"
+                - "--fail"
+                - "-o"
+                - "/dev/null"
+                - "http://localhost:8002/health"
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            failureThreshold: 3
+          readinessProbe:
+            # httpGet:
+            #   path: /readiness
+            #   port: 8002
+            exec:
+              command:
+                - "curl"
+                - "--fail"
+                - "-o"
+                - "/dev/null"
+                - "http://localhost:8002/readiness"
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            failureThreshold: 5
+          livenessProbe:
+            # httpGet:
+            #   path: /liveness
+            #   port: 8002
+            exec:
+              command:
+                - "curl"
+                - "--fail"
+                - "-o"
+                - "/dev/null"
+                - "http://localhost:8002/liveness"
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            failureThreshold: 5
+---
+# tenant service
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tenant-api
+  labels:
+    app: tenant
+spec:
+  # replicas: 1
+  selector:
+    matchLabels:
+      app: tenant
+  template:
+    metadata:
+      labels:
+        app: tenant
+    spec:
+      containers:
+        - name: tenant
+          image: farrasjay/capstone-tenant:latest
+          ports:
+            - containerPort: 8003
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: "500m"
+              # memory: "5G"
+            limits:
+              memory: "1G"
+          startupProbe:
+            # httpGet:
+            #   path: /health
+            #   port: 8003
+            exec:
+              command:
+                - "curl"
+                - "--fail"
+                - "-o"
+                - "/dev/null"
+                - "http://localhost:8003/health"
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            failureThreshold: 3
+          readinessProbe:
+            # httpGet:
+            #   path: /readiness
+            #   port: 8003
+            exec:
+              command:
+                - "curl"
+                - "--fail"
+                - "-o"
+                - "/dev/null"
+                - "http://localhost:8003/readiness"
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            failureThreshold: 5
+          livenessProbe:
+            # httpGet:
+            #   path: /liveness
+            #   port: 8003
+            exec:
+              command:
+                - "curl"
+                - "--fail"
+                - "-o"
+                - "/dev/null"
+                - "http://localhost:8003/liveness"
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            failureThreshold: 5
+---
+# wishlist service
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wishlist-api
+  labels:
+    app: wishlist
+spec:
+  # replicas: 1
+  selector:
+    matchLabels:
+      app: wishlist
+  template:
+    metadata:
+      labels:
+        app: wishlist
+    spec:
+      containers:
+        - name: wishlist
+          image: farrasjay/capstone-wishlist:latest
+          ports:
+            - containerPort: 8004
+          imagePullPolicy: Always
+          resources:
+            requests:
+              cpu: "500m"
+              # memory: "5G"
+            limits:
+              memory: "1G"
+          startupProbe:
+            # httpGet:
+            #   path: /health
+            #   port: 8004
+            exec:
+              command:
+                - "curl"
+                - "--fail"
+                - "-o"
+                - "/dev/null"
+                - "http://localhost:8004/health"
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            failureThreshold: 3
+          readinessProbe:
+            # httpGet:
+            #   path: /readiness
+            #   port: 8004
+            exec:
+              command:
+                - "curl"
+                - "--fail"
+                - "-o"
+                - "/dev/null"
+                - "http://localhost:8004/readiness"
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            failureThreshold: 5
+          livenessProbe:
+            # httpGet:
+            #   path: /liveness
+            #   port: 8004
+            exec:
+              command:
+                - "curl"
+                - "--fail"
+                - "-o"
+                - "/dev/null"
+                - "http://localhost:8004/liveness"
+            initialDelaySeconds: 60
+            periodSeconds: 30
+            failureThreshold: 5
+---

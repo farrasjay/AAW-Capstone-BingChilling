@@ -1,0 +1,75 @@
+# auth service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: authentication-api
+spec:
+  selector:
+    app: authentication
+  ports:
+    - protocol: TCP
+      port: 8000
+      targetPort: 8000
+  type: LoadBalancer
+---
+# orders service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: orders-api
+spec:
+  selector:
+    app: orders
+  ports:
+    - protocol: TCP
+      port: 8001
+      targetPort: 8001
+  type: LoadBalancer
+---
+# products service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: products-api
+spec:
+  selector:
+    app: products
+  ports:
+    - protocol: TCP
+      port: 8002
+      targetPort: 8002
+  type: LoadBalancer
+---
+# tenant service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: tenant-api
+spec:
+  selector:
+    app: tenant
+  ports:
+    - protocol: TCP
+      port: 8003
+      targetPort: 8003
+  type: LoadBalancer
+---
+# wishlist service
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: wishlist-api
+spec:
+  selector:
+    app: wishlist
+  ports:
+    - protocol: TCP
+      port: 8004
+      targetPort: 8004
+  type: LoadBalancer
+---

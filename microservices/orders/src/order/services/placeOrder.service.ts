@@ -58,22 +58,26 @@ export const placeOrderService = async (
                 data: { productIds }
             });
             
-            products = response.data;
+            // Type assertion to specify the expected response structure
+            const responseData = response.data as Product[];
             
-            if (!products || products.length === 0) {
+            if (!responseData || responseData.length === 0) {
                 logger.warn(`No products found for IDs: ${productIds.join(', ')}`);
                 return new BadRequestResponse('No products found in cart').generate();
             }
             
+            products = responseData;
             logger.info(`Successfully retrieved ${products.length} products`);
-        } catch (error: any) {
+        } catch (error: unknown) {
             if (error instanceof ServiceUnavailableResponse) {
                 // Circuit is open, return service unavailable
                 logger.error("Product service is unavailable (circuit open)");
                 return new ServiceUnavailableResponse("Product service is temporarily unavailable, please try again later").generate();
             }
             
-            logger.error(`Error fetching products: ${error.message}`, { stack: error.stack });
+            // Type guard for error
+            const err = error as Error;
+            logger.error(`Error fetching products: ${err.message}`, { stack: err.stack });
             return new InternalServerErrorResponse("Failed to get products").generate();
         }
 
@@ -93,12 +97,16 @@ export const placeOrderService = async (
                 data: order,
                 status: 201,
             };
-        } catch (orderError: any) {
+        } catch (error: unknown) {
+            // Type guard for orderError
+            const orderError = error as Error;
             logger.error(`Error creating order: ${orderError.message}`, { stack: orderError.stack });
-            return new InternalServerErrorResponse(orderError).generate();
+            return new InternalServerErrorResponse(orderError.message).generate();
         }
-    } catch (err: any) {
+    } catch (error: unknown) {
+        // Type guard for err
+        const err = error as Error;
         logger.error(`Unexpected error in placeOrder service: ${err.message}`, { stack: err.stack });
-        return new InternalServerErrorResponse(err).generate();
+        return new InternalServerErrorResponse(err.message).generate();
     }
 }
