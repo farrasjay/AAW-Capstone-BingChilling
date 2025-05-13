@@ -23,9 +23,9 @@ spec:
           imagePullPolicy: Always
           resources:
             requests:
-              cpu: "500m"
+              cpu: "400m"
             limits:
-              memory: "1G"
+              memory: "800Mi"
           env:
             - name: AUTH_MS_URL
               value: http://authentication-api.default.svc.cluster.local:8000
@@ -33,13 +33,15 @@ spec:
               value: http://products-api.default.svc.cluster.local:8002
             - name: TENANT_MS_URL
               value: http://tenant-api.default.svc.cluster.local:8003
+            - name: DB_HOST
+              value: auth-database.cj9okkh95hta.us-east-1.rds.amazonaws.com
           startupProbe:
             httpGet:
               path: /health
               port: 8000
             initialDelaySeconds: 30
             periodSeconds: 30
-            failureThreshold: 3
+            failureThreshold: 5
           readinessProbe:
             httpGet:
               path: /readiness
@@ -81,10 +83,10 @@ spec:
           imagePullPolicy: Always
           resources:
             requests:
-              cpu: "500m"
+              cpu: "400m"
               # memory: "5G"
             limits:
-              memory: "1G"
+              memory: "800Mi"
           env:
             - name: AUTH_MS_URL
               value: http://authentication-api.default.svc.cluster.local:8000
@@ -105,7 +107,7 @@ spec:
                 #- "http://localhost:8001/health"
             initialDelaySeconds: 30
             periodSeconds: 30
-            failureThreshold: 3
+            failureThreshold: 5
           readinessProbe:
             httpGet:
               path: /readiness
@@ -161,10 +163,10 @@ spec:
           imagePullPolicy: Always
           resources:
             requests:
-              cpu: "500m"
+              cpu: "400m"
               # memory: "5G"
             limits:
-              memory: "1G"
+              memory: "800Mi"
           env:
             - name: AUTH_MS_URL
               value: http://authentication-api.default.svc.cluster.local:8000
@@ -185,7 +187,7 @@ spec:
                 #- "http://localhost:8002/health"
             initialDelaySeconds: 30
             periodSeconds: 30
-            failureThreshold: 3
+            failureThreshold: 5
           readinessProbe:
             httpGet:
               path: /readiness
@@ -241,10 +243,10 @@ spec:
           imagePullPolicy: Always
           resources:
             requests:
-              cpu: "500m"
+              cpu: "400m"
               # memory: "5G"
             limits:
-              memory: "1G"
+              memory: "800Mi"
           env:
             - name: AUTH_MS_URL
               value: http://authentication-api.default.svc.cluster.local:8000
@@ -265,7 +267,7 @@ spec:
                 #- "http://localhost:8003/health"
             initialDelaySeconds: 30
             periodSeconds: 30
-            failureThreshold: 3
+            failureThreshold: 5
           readinessProbe:
             httpGet:
               path: /readiness
@@ -321,10 +323,10 @@ spec:
           imagePullPolicy: Always
           resources:
             requests:
-              cpu: "500m"
+              cpu: "400m"
               # memory: "5G"
             limits:
-              memory: "1G"
+              memory: "800Mi"
           env:
             - name: AUTH_MS_URL
               value: http://authentication-api.default.svc.cluster.local:8000
@@ -345,7 +347,7 @@ spec:
                 #- "http://localhost:8004/health"
             initialDelaySeconds: 30
             periodSeconds: 30
-            failureThreshold: 3
+            failureThreshold: 5
           readinessProbe:
             httpGet:
               path: /readiness
