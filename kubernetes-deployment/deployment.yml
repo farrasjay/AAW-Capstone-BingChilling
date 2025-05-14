@@ -94,6 +94,8 @@ spec:
               value: http://products-api.default.svc.cluster.local:8002
             - name: TENANT_MS_URL
               value: http://tenant-api.default.svc.cluster.local:8003
+            - name: DB_HOST
+              value: orders-database.cj9okkh95hta.us-east-1.rds.amazonaws.com
           startupProbe:
             httpGet:
               path: /health
@@ -174,6 +176,8 @@ spec:
               value: http://products-api.default.svc.cluster.local:8002
             - name: TENANT_MS_URL
               value: http://tenant-api.default.svc.cluster.local:8003
+            - name: DB_HOST
+              value: products-database.cj9okkh95hta.us-east-1.rds.amazonaws.com
           startupProbe:
             httpGet:
               path: /health
@@ -254,6 +258,8 @@ spec:
               value: http://products-api.default.svc.cluster.local:8002
             - name: TENANT_MS_URL
               value: http://tenant-api.default.svc.cluster.local:8003
+            - name: DB_HOST
+              value: tenant-database.cj9okkh95hta.us-east-1.rds.amazonaws.com
           startupProbe:
             httpGet:
               path: /health
@@ -334,6 +340,8 @@ spec:
               value: http://products-api.default.svc.cluster.local:8002
             - name: TENANT_MS_URL
               value: http://tenant-api.default.svc.cluster.local:8003
+            - name: DB_HOST
+              value: wishlist-database.cj9okkh95hta.us-east-1.rds.amazonaws.com
           startupProbe:
             httpGet:
               path: /health
