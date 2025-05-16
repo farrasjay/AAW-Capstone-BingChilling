@@ -23,9 +23,9 @@ spec:
           imagePullPolicy: Always
           resources:
             requests:
-              cpu: "400m"
+              cpu: "200m"
             limits:
-              memory: "800Mi"
+              memory: "400Mi"
           env:
             - name: AUTH_MS_URL
               value: http://authentication-api.default.svc.cluster.local:8000
@@ -83,10 +83,10 @@ spec:
           imagePullPolicy: Always
           resources:
             requests:
-              cpu: "400m"
+              cpu: "200m"
               # memory: "5G"
             limits:
-              memory: "800Mi"
+              memory: "400Mi"
           env:
             - name: AUTH_MS_URL
               value: http://authentication-api.default.svc.cluster.local:8000
@@ -165,10 +165,10 @@ spec:
           imagePullPolicy: Always
           resources:
             requests:
-              cpu: "400m"
+              cpu: "200m"
               # memory: "5G"
             limits:
-              memory: "800Mi"
+              memory: "400Mi"
           env:
             - name: AUTH_MS_URL
               value: http://authentication-api.default.svc.cluster.local:8000
@@ -247,10 +247,10 @@ spec:
           imagePullPolicy: Always
           resources:
             requests:
-              cpu: "400m"
+              cpu: "200m"
               # memory: "5G"
             limits:
-              memory: "800Mi"
+              memory: "400Mi"
           env:
             - name: AUTH_MS_URL
               value: http://authentication-api.default.svc.cluster.local:8000
@@ -329,10 +329,10 @@ spec:
           imagePullPolicy: Always
           resources:
             requests:
-              cpu: "400m"
+              cpu: "200m"
               # memory: "5G"
             limits:
-              memory: "800Mi"
+              memory: "400Mi"
           env:
             - name: AUTH_MS_URL
               value: http://authentication-api.default.svc.cluster.local:8000

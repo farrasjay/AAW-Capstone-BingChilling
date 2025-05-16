@@ -1,0 +1,155 @@
+# Authentication Migration Job
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: auth-migration
+spec:
+  template:
+    spec:
+      containers:
+      - name: auth-migration
+        image: farrasjay/capstone-authentication:latest
+        command: ["/bin/sh"]
+        args: 
+          - -c
+          - |
+            echo "Running Drizzle generate..."
+            npx drizzle-kit generate
+            echo "Running Drizzle migrate..."
+            npx drizzle-kit migrate
+        env:
+        - name: DB_HOST
+          value: auth-database.cj9okkh95hta.us-east-1.rds.amazonaws.com
+        # Add other necessary environment variables
+        - name: DB_USER
+          value: postgres
+        - name: DB_PASSWORD
+          value: postgres
+        - name: DB_NAME
+          value: postgres
+      restartPolicy: Never
+  backoffLimit: 4
+---
+# Orders Migration Job
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: orders-migration
+spec:
+  template:
+    spec:
+      containers:
+      - name: orders-migration
+        image: farrasjay/capstone-orders:latest
+        command: ["/bin/sh"]
+        args: 
+          - -c
+          - |
+            echo "Running Drizzle generate..."
+            npx drizzle-kit generate
+            echo "Running Drizzle migrate..."
+            npx drizzle-kit migrate
+        env:
+        - name: DB_HOST
+          value: orders-database.cj9okkh95hta.us-east-1.rds.amazonaws.com
+        - name: DB_USER
+          value: postgres
+        - name: DB_PASSWORD
+          value: postgres
+        - name: DB_NAME
+          value: postgres
+      restartPolicy: Never
+  backoffLimit: 4
+---
+# Products Migration Job
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: products-migration
+spec:
+  template:
+    spec:
+      containers:
+      - name: products-migration
+        image: farrasjay/capstone-products:latest
+        command: ["/bin/sh"]
+        args: 
+          - -c
+          - |
+            echo "Running Drizzle generate..."
+            npx drizzle-kit generate
+            echo "Running Drizzle migrate..."
+            npx drizzle-kit migrate
+        env:
+        - name: DB_HOST
+          value: products-database.cj9okkh95hta.us-east-1.rds.amazonaws.com
+        - name: DB_USER
+          value: postgres
+        - name: DB_PASSWORD
+          value: postgres
+        - name: DB_NAME
+          value: postgres
+      restartPolicy: Never
+  backoffLimit: 4
+---
+# Tenant Migration Job
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: tenant-migration
+spec:
+  template:
+    spec:
+      containers:
+      - name: tenant-migration
+        image: farrasjay/capstone-tenant:latest
+        command: ["/bin/sh"]
+        args: 
+          - -c
+          - |
+            echo "Running Drizzle generate..."
+            npx drizzle-kit generate
+            echo "Running Drizzle migrate..."
+            npx drizzle-kit migrate
+        env:
+        - name: DB_HOST
+          value: tenant-database.cj9okkh95hta.us-east-1.rds.amazonaws.com
+        - name: DB_USER
+          value: postgres
+        - name: DB_PASSWORD
+          value: postgres
+        - name: DB_NAME
+          value: postgres
+      restartPolicy: Never
+  backoffLimit: 4
+---
+# Wishlist Migration Job
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: wishlist-migration
+spec:
+  template:
+    spec:
+      containers:
+      - name: wishlist-migration
+        image: farrasjay/capstone-wishlist:latest
+        command: ["/bin/sh"]
+        args: 
+          - -c
+          - |
+            echo "Running Drizzle generate..."
+            pnmp drizzle-kit generate
+            echo "Running Drizzle migrate..."
+            npx drizzle-kit migrate
+        env:
+        - name: DB_HOST
+          value: wishlist-database.cj9okkh95hta.us-east-1.rds.amazonaws.com
+        - name: DB_USER
+          value: postgres
+        - name: DB_PASSWORD
+          value: postgres
+        - name: DB_NAME
+          value: postgres
+      restartPolicy: Never
+  backoffLimit: 4

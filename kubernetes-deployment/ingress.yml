@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: authentication-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: authentication.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: authentication-api
+            port:
+              number: 80
