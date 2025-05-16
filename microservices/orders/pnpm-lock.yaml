@@ -42,7 +42,7 @@ importers:
         specifier: ^8.11.3
         version: 8.15.6
       prom-client:
-        specifier: ^15.1.2
+        specifier: ^15.1.3
         version: 15.1.3
       uuid:
         specifier: ^11.1.0
