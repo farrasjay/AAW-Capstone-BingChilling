@@ -9,7 +9,7 @@ export const verifyJWT = async (
   try {
     const token = req.headers.authorization?.split("Bearer ")[1];
     if (!token) {
-      return res.status(401).send({ message: "Invalid token" });
+      return res.status(401).send({ message: `Invalid token Bearer: ${token}` });
     }
 
     const payload = jwt.verify(
@@ -23,12 +23,12 @@ export const verifyJWT = async (
       return res.status(500).send({ message: "Server tenant ID is missing" });
     }
     if (tenant_id !== process.env.TENANT_ID) {
-      return res.status(401).send({ message: "Invalid token" });
+      return res.status(401).send({ message: `Invalid token: ${tenant_id} != ${process.env.TENANT_ID}` });
     }
 
     req.body.user = payload;
     next();
   } catch (error) {
-    return res.status(401).send({ message: "Invalid token" });
+    return res.status(401).send({ message: `Invalid token: ${error}` });
   }
 };

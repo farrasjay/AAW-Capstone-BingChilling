@@ -8,11 +8,11 @@ export const verifyAdminTokenService = async (
     try {
         const payload = jwt.verify(
             token,
-            process.env.ADMIN_JWT_SECRET as string
+            process.env.JWT_SECRET as string
         ) as JwtPayload;
 
         const { id, tenant_id } = payload;
-        const SERVER_TENANT_ID = process.env.ADMIN_TENANT_ID;
+        const SERVER_TENANT_ID = process.env.TENANT_ID;
         if (!SERVER_TENANT_ID) {
             return new InternalServerErrorResponse("Server tenant ID is missing").generate();
         }
